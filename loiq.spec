@@ -1,15 +1,15 @@
-Summary:            LOIQ stands for Low Orbit Ion Cannon in Qt.
+Summary:            Low Orbit Ion Cannon in Qt
 Name:               loiq
 Version:            0.3.1a
 Release:            1%{?dist}.R
 
-Source:             %{name}-%{version}.tar.bz2
+Source:             http://downloads.sourceforge.net/project/loiq/%{name}-%{version}.tar.bz2
 Source1:            loiq.desktop
 URL:                http://loiq.sourceforge.net/
-Group:              Applications/Network
+Group:              Applications/Internet
 License:            GPLv3
 
-BuildRequires:      qt4-devel
+BuildRequires:      qt-devel
 
 
 %description
@@ -21,26 +21,24 @@ us *NIXoids.
 
 %prep
 %setup -q
+qmake-qt4 -o Makefile loiq.pro
+make clean
+
 
 %build
-rm -f loiq
-qmake-qt4 -o Makefile loiq.pro
 make %{?_smp_mflags}
 
+
 %install
-rm -r %{buildroot}
+rm -rf %{buildroot}
 make INSTALL_ROOT=%{buildroot} INSTALL="install -p" CP="cp -p" install
 install -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/applications/%{name}.desktop
 
-
-%post
-
-
-%preun
+strip %{buildroot}%{_bindir}/%{name}
 
 
-%postun
-update-desktop-database -q
+%clean
+rm -rf %{buildroot}
 
 
 %files 
