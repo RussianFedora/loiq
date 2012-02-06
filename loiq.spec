@@ -1,7 +1,7 @@
 Summary:            Low Orbit Ion Cannon in Qt
 Name:               loiq
 Version:            0.3.1a
-Release:            2%{?dist}.R
+Release:            3%{?dist}.R
 Summary:            Low Orbit Ion Cannon in Qt
 Summary(ru):        Low Orbit Ion Cannon на Qt
 
@@ -11,7 +11,11 @@ URL:                http://loiq.sourceforge.net/
 Group:              Applications/Internet
 License:            GPLv3
 
-BuildRequires:      qt-devel
+%if 0%{?fedora} >= 15 && 0%{?rhel} >= 7
+BuildRequires:  qt-devel
+%else
+BuildRequires:  qt4-devel
+%endif
 
 
 %description
@@ -57,6 +61,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Feb 06 2012 Vasiliy N. Glazov <vascom2@gmail.com> - 1.3.1a-3.R
+- added conditions to build for EL6
+
 * Tue Nov 22 2011 Vasiliy N. Glazov <vascom2@gmail.com> - 1.3.1a-2.R
 - Added description in russian language
 
