@@ -1,7 +1,7 @@
 Summary:            Low Orbit Ion Cannon in Qt
 Name:               loiq
 Version:            0.3.1a
-Release:            3%{?dist}.R
+Release:            3%{?dist}
 Summary:            Low Orbit Ion Cannon in Qt
 Summary(ru):        Low Orbit Ion Cannon на Qt
 
